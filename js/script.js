@@ -99,12 +99,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
     //check and clear form
     var field = document.querySelector('.footer__form-field'),
-    fieldValue = field.value,
     message = document.querySelector('.footer__form-massage'),
     clear = document.querySelector('.footer__form-clear'),
     btnSend = document.querySelector('.footer__form-btn-send');
-
-    var emailReg = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
 
     clear.addEventListener("click", () => {
         field.value = '';
