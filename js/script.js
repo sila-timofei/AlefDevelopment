@@ -110,22 +110,26 @@ window.addEventListener("DOMContentLoaded", () => {
         field.value = '';
     });
 
-    btnSend.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        if (!emailReg.test(field)) {
-            notValid(field, message, "Проверка не пройдена");
-        } else {
+    function formValidate() {
+        if (emailTest(field)) {
             valid(field, message, "");
+        } else {
+            notValid(field, message, "Введите корректный email адрес");
         }
-    });
-
-    function validate(reg, inp) {
-        //console.log(reg.test(inp));
-        return reg.test(inp);
     }
 
+    function emailTest(input) {
+        return /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(input.value);
+    }
+
+    btnSend.addEventListener("click", (e) => {
+        e.preventDefault();
+        formValidate();
+    });
+
+
     function notValid(inp, elem, mess) {
+        inp.classList.remove("footer__field_success");
         inp.classList.add("footer__field_error");
         elem.innerHTML = mess;
     }
